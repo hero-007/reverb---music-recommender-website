@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+    <center>
+        <a href="{% url 'load_register_page' %}"><button>Register here</button></div></a><br><br>
+        {% if login_status%}
+        <a href="{% url 'logout_here' %}"><button>Log Out</button></div></a><br>
+        <h1>{{ username }}</h1><br><br>
+        <a href="{% url 'recommend_here' %}"><button>recommend songs</button></div></a><br>
+        <h2> Song List : </h2><br>
+            {% for song in songs %}
+                <h3>{{ song }}</h3>
+            {% endfor %}
+        {% else %}
+        <a href="{% url 'load_login_page' %}"><button>Log In</button></div></a><br>
+        {% endif %}
+    </center>
+
+</body>
+</html>

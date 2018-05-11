@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+    <center>
+    <form action="{% url 'register_here' %}" method="POST">
+        {% csrf_token %}
+        Username:<br>
+        <input type="text" name="username"><br>
+        Name:<br>
+        <input type="text" name="name"><br><br>
+        Email:<br>
+        <input type="email" name="email"><br>
+        Password:<br>
+        <input type="password" name="password"><br><br>
+        <input type="submit" value="register">
+    </form>
+</center>
+</body>
+</html>
