@@ -40,7 +40,7 @@ def register_here(request):
     return render(request,'user_account/response.html',context)
 
 def load_login_page(request):
-    return render(request,'user_account/login.html',{})
+    return render(request,'user_account/user.html',{})         # change login.html with user.html
 
 def login_here(request):
     context = {}
