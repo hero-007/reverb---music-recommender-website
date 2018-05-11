@@ -3,7 +3,6 @@
 <head></head>
 <body>
     <center>
-        <a href="{% url 'load_register_page' %}"><button>Register here</button></div></a><br><br>
         {% if login_status%}
         <a href="{% url 'logout_here' %}"><button>Log Out</button></div></a><br>
         <h1>{{ username }}</h1><br><br>
