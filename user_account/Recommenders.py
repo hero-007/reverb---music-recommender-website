@@ -1,7 +1,7 @@
 import numpy as np
 import pandas
 
-#Class for Popularity based Recommender System model
+"""#Class for Popularity based Recommender System model
 class popularity_recommender_py():
     def __init__(self):
         self.train_data = None
@@ -43,7 +43,7 @@ class popularity_recommender_py():
         
         return user_recommendations
     
-
+"""
 #Class for Item similarity based Recommender System model
 class item_similarity_recommender_py():
     def __init__(self):
