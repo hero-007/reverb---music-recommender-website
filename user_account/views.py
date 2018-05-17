@@ -14,7 +14,7 @@ def index(request):
         context['login_status'] = True
         song_list = basic.give_me_song_list(request.user)
         context['songs'] = song_list
-    return render(request,'user_account/index.html',context)
+    return render(request,'user_account/dashboard.html',context)
 
 def load_register_page(request):
     return render(request,'user_account/register_page.html',{})
@@ -53,7 +53,8 @@ def login_here(request):
     if user_hello is not None:
         login(request,user_hello)
         context['response']='{} is logged in successfully'.format(username)
-        return render(request,'user_account/response.html',context)
+        # return render(request,'user_account/response.html',context)
+        return index(request)
     else:
         context['response']='Please Enter the correct credentials'
         return render(request,'user_account/response.html',context)
@@ -62,7 +63,8 @@ def logout_here(request):
     current_user = request.user
     logout(request)
     context = {'response':'You are logged out successfully'}
-    return render(request,'user_account/response.html',context)
+    # return render(request,'user_account/response.html',context)
+    return index(request)
 
 def recommend_here(request):
     context ={'recommended_songs':None}

@@ -1,0 +1,89 @@
+{% load staticfiles  %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reverb - Music Recommender</title>
+    <link href="{% static 'css/dash.css' %}" rel="stylesheet">
+</head>
+<body> 
+<!--Music Player....-->
+<div id="player" class="player playing">
+  <div class="info">
+    <div class="list">
+      <div class="list-head">
+        <h1>Play List</h1>
+        <h2>Genre - Classic</h2>
+        <div class="star"></div>
+        <div class="share"></div>
+      </div>
+      
+      <div class="list-scroll">
+        <ol id="tracklist">
+        {% if login_status %}
+        {% for song in songs %}
+        <li name = "" >{{ song }}</li>
+        {% endfor %}
+        {% else %} 
+        <h2 name = "" style = "position:relative;top:200px;left:40px;color:#e83737;">Log In To Create Your Playlist</h2>
+        {% endif %}
+        </ol>
+      </div>
+      </div>
+      <!-- Test code here -->
+      <!-- Test Code end here -->
+<!--working area..........-->
+      <div class="working">
+          <ul>
+          {% if login_status %}
+          <li><a class="active" href="{% url 'logout_here' %}">Logout</a></li>
+          <li><a>Username : {{ username }}</a></li>
+          {% else %}
+          <li><a class="active" href="{% url 'load_login_page' %}">Login | Register</a></li>
+          {% endif %}
+        </ul>
+        {% if login_status %}
+        <img src="{% static 'images/headphone.svg' %}" style="height:200px;width:200px;position:relative;top:120px;left:120px;">
+        {% else %}
+        <img src="{% static 'images/headphone.svg' %}" style="height:200px;width:200px;position:relative;top:120px;left:120px;">
+        {% endif %}
+      </div>
+      
+      
+      
+<!--...................-->
+  </div>
+  <div class="controls">
+    <div class="buttons">
+      <div class="fa fa-backward" style="padding-right: 12px;"></div>
+      <div class="fa fa-play" style="padding-right: 12px;" onclick="playNow()"></div>
+      <div class="fa fa-forward"></div>
+    </div>
+    <div class="scrubber">
+      <div id="time" class="time">0.00</div>
+      <div id="progress" class="progress"></div>
+      <div id="length" class="length"></div>
+    </div>
+    <audio id="myAudio">
+     <source src="sampleSong.mp3" type="audio/mp3"> <!--change the src here dynamicaly to switch song-->
+    </audio>
+  </div>
+
+</div>
+      
+       
+       <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+
+    <script>
+    var x = document.getElementById("myAudio"); 
+    function playNow() { 
+        x.play(); 
+    }     
+    x.addEventListener("timeupdate", function() {
+    var currentTime = x.currentTime;
+    var duration = x.duration;
+    document.getElementById('progress').animate({'width':(currentTime +.25)/duration*100+'%'},250,'linear');
+});
+    </script>
+    </body>
+</html>
